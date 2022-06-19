@@ -1,0 +1,76 @@
+.app_area{
+    width: 800px;
+    background: #acdef1;
+    box-shadow: 1px 2px gray;
+}
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.heading{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: rgb(239, 216, 247);
+}
+.chat-area{
+    height: 500px;
+    padding: 20px;
+    display: flex;
+    overflow-y:auto; 
+    flex-direction: column;
+    padding-top:40px;
+}
+textarea{
+    width: 100%;
+    border: none;
+    padding: 20px;
+    font-size: 16px;
+    outline: none;
+    background-color: aliceblue;
+}
+.message{
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+    max-width: 300px;
+}
+.message h3{
+    color: blue;
+}
+.incoming{
+    background: rgb(160, 232, 160);
+    color: white;
+}
+.outgoing{
+    background-color: darkturquoise;
+    color: white;
+    margin-left: auto;
+}
+.notif{
+    background-color: burlywood;
+    color: black;
+    text-align: center;
+    margin-left: 200px;
+}
+
+/* HEADING */
+.image-area{
+    align-items: left;
+    margin-right:10px ;
+}
+.text-area{
+    text-align: left;
+    margin-top: 10px;
+    flex: 2;
+}

@@ -1,0 +1,145 @@
+link : https://www.youtube.com/watch?v=_gikjdpWmcI
+
+1>  npm project
+
+2>  index, css and js files for design : public folder
+
+3>  install dependencies : socket.io , nodemon , hbs , uuid
+
+4>  now create server 
+express app
+http createServer app
+PORT VARIABLE
+http.listen(PORT,()=>{
+
+})
+
+// ALSO WE HAVE TO TELL THE NODE JS TO USE THE PUBLIC folder
+app.use(express.static('')) <= MIDDLEWARE
+// After this u dont require to write public 
+
+app.get('/',(req,res)=>{
+    res.sendFile(path_of_file)
+})
+
+5>  front end part
+
+    chat section
+    div -> top of chat 
+    div -> chat area
+            div -> incoming 
+            div -> outgoing
+            textarea div -> send message
+             
+
+6> socket io
+    io = require('socket.io')(http)** remember (http) is required
+
+    // when a client connects
+    // setup in server 
+    io.on('connection',()=>{
+
+    })
+
+    // setup in client
+    // client.js
+
+    HOW TO setup
+    GO TO HTML
+    <script src="/socket.io/socket.io.js"></script> ==>
+    WE ARE GETTING FROM NODE SERVER TO ACCESS USE THIS METHOD TO LOAD CLIENT LIBRARY
+    NOW WE GET A VARIABLE io from client LIBRARY
+
+    <script src="/client.js"></script>
+
+
+    const socket = io()
+
+7>   SENDING message
+     JOIN -> ASK NAME BY USING PROMPT 
+     IT SET USERNAME
+     LET NAME ;
+     do{
+        name = PROMPT('ENTER NAME')
+     }while(!NAME)
+
+     GIVE PROMPT UNTIL USER ENTER NAMES 
+
+
+     HOW TO SEND MESSAGE :
+     GET TEXT AREA 
+     let textarea = document.querySelector('#textarea')
+     id given textarea
+
+     textarea.addEventListener('keyup',(e)=>{
+        if(e.key == 'Enter')
+        {
+            sendMessage(e.target.value)
+        }
+     })
+
+     function sendMessage(msg)
+     {
+        let msg ={
+            user: name,
+            message:msg.trim(),-> trim removes all the extra lines , spaces 
+        }
+        // apend message in user sendFile
+        appendMessage(msg,'outgoing')
+                                |
+                            TYPE OF MESSAGE
+
+        // send in server
+        via websocket connection
+        socket.emit('message',(msg))
+        // IT IS SEND TO SERVER 
+        
+
+     }
+     let messagearea = document.getElementsByClassName('messageArea')
+
+     // common method instead of getElementById , getElementsByClassName , getElementsByTagName
+        : querySelector(CSS SELECTOR) : SINGLE
+        : querySelectorAll  :MULTIPLE
+
+        document.querySelector("#header") -> means id header
+
+     function appendMessage(msg,type)
+     {
+        //messagearea
+        let maindiv = document.createElement('div')
+        let className = type
+        maindiv.classList.add(className,'message')
+
+        we can use ${msg.user} ${msg.message}
+
+     }
+
+
+8> server.js    inside
+
+io.on('connection',(socket)=>{
+    socket.on('message',(msg)=>{
+        // we have to return ,essage to all other clients except the person 
+        socket.broadcast.emit('message',msg)
+                                         |
+                                        data
+
+    })
+})
+
+
+9) NOW RECIEVE MESSAGES BY SERVER
+
+    socket.on('message',(msg)=>{
+        WE HAVE TO INSERT 
+        appendMessage(msg,'incoming');
+    })
+                  |
+                Event name
+
+10) Scroll To Bottom 
+    function scroll(){
+        messageArea.scrollTop = messageArea.height
+    }
+    Now call this after sending or recieving a message
